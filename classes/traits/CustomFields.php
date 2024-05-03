@@ -102,7 +102,10 @@ trait CustomFields
     protected function mapToCustomFields(array $values)
     {
         $values = collect($values)->mapWithKeys(function ($value, $id) {
-            return [$this->decode($id) => $value];
+            if( !empty($this->decode($id))) {
+                return [$this->decode($id) => $value];
+            }
+            return [];
         });
 
         return CustomField::with('custom_field_options')
