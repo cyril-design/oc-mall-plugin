@@ -77,6 +77,9 @@ class CustomerProfile extends MallComponent
             'password',
             'password_repeat',
         ]);
+        $neededRules['email'] = 'unique:users';
+
+        // The password is unchanged so we don't need to validate it.
         if ($data['password'] === '') {
             unset($neededRules['password'], $neededRules['password_repeat']);
         }
