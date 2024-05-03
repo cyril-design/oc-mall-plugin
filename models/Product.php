@@ -375,9 +375,6 @@ class Product extends Model
         if ($this->inventory_management_method === 'variant' && $this->stock === null) {
             $this->stock = 0;
         }
-        if ($this->is_virtual) {
-            $this->inventory_management_method = 'single';
-        }
     }
 
     public function afterSave()
@@ -564,11 +561,8 @@ class Product extends Model
      * This setter makes it easier to set price values
      * in different currencies by providing an array of
      * prices. It is mostly used for unit testing.
-     *
-     * @param $value
-     *
      * @internal
-     *
+     * @param $value
      */
     public function setPriceAttribute($value)
     {
@@ -691,11 +685,9 @@ class Product extends Model
         }
 
         if ($this->is_virtual) {
-            $this->hideField($fields, 'inventory_management_method');
-            $this->hideField($fields, 'variants');
             $this->hideField($fields, 'weight');
             if ($this->files->count() > 0) {
-                $fields->missing_file_hint->hidden = true;
+                $this->hideField($fields, 'missing_file_hint');
             }
         } else {
             $this->hideField($fields, 'product_files');

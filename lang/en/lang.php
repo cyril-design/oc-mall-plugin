@@ -41,7 +41,7 @@ return [
             'edit' => 'Edit field options',
         ],
         'properties' => [
-            'create' => 'Create properites',
+            'create' => 'Create properties',
             'edit' => 'Edit properties',
         ],
         'order_states' => [
@@ -197,7 +197,7 @@ return [
         'shipping_selection_before_payment' => 'Select shipping method BEFORE payment during checkout',
         'shipping_selection_before_payment_comment' => 'By default, during checkout, the user is first asked to select a payment method before selecting a shipping method; use this option to reverse this logic',
         'admin_email' => 'Admin email',
-        'admin_email_comment' => 'Admin notifications will be sent to this addres',
+        'admin_email_comment' => 'Admin notifications will be sent to this address',
         'base' => 'Base settings',
         'links' => 'CMS pages',
         'links_comment' => 'Choose which pages are used to display your products',
@@ -210,7 +210,7 @@ return [
         'index_driver_comment' => 'If your database supports JSON use the database driver.',
         'index_driver_filesystem' => 'Filesystem',
         'index_driver_database' => 'Database (MySQL 5.7+, MariaDB 10.2+, SQLite 3.19+)',
-        'index_driver_hint' => 'If you change this option make sure to run "php artisan mall:reindex" on the command line to re-index your products!',
+        'index_driver_hint' => 'If you change this option make sure to run :command on the command line to re-index your products!',
     ],
     'feed_settings' => [
         'description' => 'Configure mall feeds',
@@ -470,6 +470,8 @@ return [
         'session_required_comment' => 'The file can only be downloaded when the customer is logged in (download link is not shareable).',
         'file' => 'File',
         'download_count' => 'Download count',
+        'limit_to_variants' => 'Limit to variants',
+        'limit_to_variants_comment' => 'Assign and Limit this product file to one or more of the available product variants.',
         'errors' => [
             'invalid' => 'Invalid download link',
             'expired' => 'Download link expired',
@@ -477,7 +479,7 @@ return [
             'not_found' => 'Cannot find requested file, please contact us for support.',
         ],
         'hint' => [
-            'intro' => 'This product does not have a file attached. Please make sure to add one or programmatically gerenate it during checkout.',
+            'intro' => 'This product does not have a file attached. Please make sure to add one or programmatically generate it during checkout.',
             'info_text' => 'You can find information on how to do this',
             'info_link' => 'in the documentation',
         ],
@@ -670,7 +672,7 @@ return [
         'paiddeferred' => 'Paid deferred',
         'charged_back' => 'Charged back',
         'refunded' => 'Refunded',
-        'paidout' => 'Paidout',
+        'paidout' => 'Paid Out',
         'failed' => 'Failed',
         'pending' => 'Pending',
         'expired' => 'Expired',
@@ -990,7 +992,7 @@ return [
         'signup' => [
             'details' => [
                 'name' => 'Signup',
-                'description' => 'Displays a signup and signin form',
+                'description' => 'Displays a signup and sign-in form',
             ],
             'properties' => [
                 'redirect' => [
@@ -1105,7 +1107,7 @@ return [
         ],
         'enhancedEcommerceAnalytics' => [
             'details' => [
-                'name' => 'Enhanced Ecommerce (UA) Component',
+                'name' => 'Enhanced E-Commerce (UA) Component',
                 'description' => 'Implements a Google Tag Manager Data Layer',
             ],
         ],

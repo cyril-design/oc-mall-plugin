@@ -6,7 +6,7 @@ use Schema;
 use October\Rain\Database\Schema\Blueprint;
 use October\Rain\Database\Updates\Migration;
 
-return new class extends Migration
+class AlterOfflineMallPaymentMethods_030_05 extends Migration
 {
     /**
      * Install Migration
@@ -29,10 +29,23 @@ return new class extends Migration
     public function down()
     {
         if (Schema::hasColumn('offline_mall_payment_methods', 'is_default')) {
-            Schema::dropColumns('offline_mall_payment_methods', 'is_default');
+            if (method_exists(Schema::class, 'dropColumns')) {
+                Schema::dropColumns('offline_mall_payment_methods', 'is_default');
+            } else {
+                Schema::table('offline_mall_payment_methods', function (Blueprint $table) {
+                    $table->dropColumn('is_default');
+                });
+            }
         }
+
         if (Schema::hasColumn('offline_mall_payment_methods', 'is_enabled')) {
-            Schema::dropColumns('offline_mall_payment_methods', 'is_enabled');
+            if (method_exists(Schema::class, 'dropColumns')) {
+                Schema::dropColumns('offline_mall_payment_methods', 'is_enabled');
+            } else {
+                Schema::table('offline_mall_payment_methods', function (Blueprint $table) {
+                    $table->dropColumn('is_enabled');
+                });
+            }
         }
     }
 };

@@ -7,6 +7,7 @@ use Html;
 use Model;
 use Cms\Classes\Page;
 use Illuminate\Support\Collection;
+use October\Rain\Database\Builder;
 use October\Rain\Database\Traits\Nullable;
 use October\Rain\Database\Traits\SoftDelete;
 use October\Rain\Database\Traits\Validation;
@@ -160,6 +161,17 @@ class Variant extends Model
     ];
     
     /**
+     * The belongsToMany relationships of this model.
+     * @var array
+     */
+    public $belongsToMany = [
+        'files' => [
+            ProductFile::class, 
+            'table' => 'offline_mall_product_file_variant'
+        ]
+    ];
+    
+    /**
      * The hasMany relationships of this model.
      * @var array
      */
@@ -239,7 +251,12 @@ class Variant extends Model
     {
 
         $originalValue       = parent::getAttribute($attribute);
-        $inheritanceDisabled = session()->get('mall.variants.disable-inheritance');
+
+        if (app()->runningInBackend()) {
+            $inheritanceDisabled = session()->get('mall.variants.disable-inheritance');
+        } else {
+            $inheritanceDisabled = false;
+        }
 
         // If any of the product relation columns are called don't override the method's default behaviour.
         $dontInheritAttribute = \in_array($attribute, ['product', 'product_id', 'all_property_values']);
